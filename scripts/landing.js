@@ -7,10 +7,6 @@ var animatePoints = function() {
         points[0].style.transform = "scaleX(1) translateY(0)";
         points[0].style.msTransform = "scaleX(1) translateY(0)";
         points[0].style.WebkitTransform = "scaleX(1) translateY(0)";
-        points[0].style.backgroundColor = "blue";
-        var title = points[0].getElementsByTagName("h5");
-        title = title[0];
-        title.style.fontSize = "60px";
     };
 
     var revealSecondPoint = function() {
