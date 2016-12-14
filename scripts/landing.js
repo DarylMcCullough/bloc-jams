@@ -19,9 +19,11 @@ var animatePoints = function(points) {
     //    revealPoint(i);
     //}
     
-    for (var i=0; i < points.length; i++) {
-        revealPoint(pointsArray[i]);
-    }
+    //for (var i=0; i < points.length; i++) {
+    //    revealPoint(pointsArray[i]);
+    //}
+    
+    forEach(pointsArray, revealPoint);
     
 
 };
