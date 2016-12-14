@@ -20,7 +20,6 @@ var animatePoints = function(points) {
     }
     var sellingPoints = document.getElementsByClassName('selling-points')[0];
     var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
-    alert("The window has loaded!");
     window.addEventListener('scroll', function(event) {
         console.log(event);
         console.log("Current offset from the top is " + sellingPoints.getBoundingClientRect().top + " pixels");
