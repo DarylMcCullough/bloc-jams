@@ -30,6 +30,21 @@
      ]
  };
 
+ var sergeantPepper = {
+     title: "Sergeant Pepper's Lonely Hearts Club Band",
+     artist: 'The Beatles',
+     label: 'Apple Records',
+     year: '1969',
+     albumArtUrl: 'assets/images/album_covers/sergeant-pepper.jpg',
+     songs: [
+         { title: "Sergeant Pepper's Lonely Hearts Club Band", duration: '1:01' },
+         { title: 'With a Little Help from My Friends', duration: '5:01' },
+         { title: 'Lucy in the Sky with Diamonds', duration: '3:21'},
+         { title: 'Getting Better All the Time', duration: '3:14' },
+         { title: 'For the Benefit of Mr. Kite', duration: '2:15'}
+     ]
+ };
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -65,6 +80,21 @@ var createSongRow = function(songNumber, songName, songLength) {
      }
  };
 
+var currentAlbum = 0;
+
+var allAlbums = [albumPicasso, albumMarconi, sergeantPepper];
+
+function switchAlbums() {
+    currentAlbum++;
+    if (currentAlbum == allAlbums.length) {
+        currentAlbum = 0;
+    }
+    setCurrentAlbum(allAlbums[currentAlbum]);
+}
+
 window.onload = function() {
-    setCurrentAlbum(albumPicasso);
+    setCurrentAlbum(sergeantPepper);
+    currentAlbum = 2;
+    var albumImage = document.getElementsByClassName('album-cover-art')[0];
+    albumImage.addEventListener("click", switchAlbums);
  };
