@@ -30,6 +30,9 @@
      ]
  };
 
+
+     
+     
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -65,6 +68,13 @@ var createSongRow = function(songNumber, songName, songLength) {
      }
  };
 
-window.onload = function() {
-    setCurrentAlbum(albumPicasso);
- };
+ var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
+
+ window.onload = function() {
+     alert("Hey");s
+     setCurrentAlbum(albumPicasso);
+
+     songListContainer.addEventListener('mouseover', function(event) {
+         // #1
+         console.log(event.target);
+     });
