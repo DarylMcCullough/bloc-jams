@@ -30,9 +30,6 @@
      ]
  };
 
-
-     
-     
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -69,7 +66,6 @@ var createSongRow = function(songNumber, songName, songLength) {
  };
 
  var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
-
  var songRows = document.getElementsByClassName('album-view-song-item');
 
 
@@ -94,4 +90,3 @@ window.onload = function() {
          });
      }
  };
->>>>>>> master
