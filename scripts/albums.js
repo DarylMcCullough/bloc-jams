@@ -71,6 +71,20 @@ var createSongRow = function(songNumber, songName, songLength) {
 
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 
+function findParentByClassName(element, className) {
+    if (element == null) {
+        return null;
+    }
+    if (element.classList.contains(className)) {
+        return element;
+    }
+    var parent = element.parentNode;
+    if (parent == null) {
+        return null;
+    }
+    return findParentByClassName(parent, className);
+}
+
 window.onload = function() {
     setCurrentAlbum(albumPicasso);
     
