@@ -21,7 +21,7 @@ $(window).load(function() {
         console.log(event);
         console.log("Current offset from the top is " + sellingPoints.getBoundingClientRect().top + " pixels");
         if (document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance) {
-             animatePoints(pointsArray);   
+             animatePoints();   
          }
     });
  });
