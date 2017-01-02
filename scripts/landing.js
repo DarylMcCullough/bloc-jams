@@ -26,7 +26,7 @@ var animatePoints = function(points) {
 
 };
 
- window.onload = function() {
+$(window).load(function() {
     if (window.innerHeight > 950) {
         animatePoints(pointsArray);
     }
@@ -39,4 +39,4 @@ var animatePoints = function(points) {
              animatePoints(pointsArray);   
          }
     });
- }
+ });
