@@ -48,7 +48,7 @@ var createSongRow = function(songNumber, songName, songLength) {
      var $albumReleaseInfo = $('.album-view-release-info');
      var $albumImage = $('.album-cover-art');
      var $albumSongList = $('.album-view-song-list');
-     
+
      $albumTitle.text(album.title);
      $albumArtist.text(album.artist);
      $albumReleaseInfo.text(album.year + ' ' + album.label);
@@ -58,7 +58,9 @@ var createSongRow = function(songNumber, songName, songLength) {
 
      for (var i = 0; i < album.songs.length; i++) {
          var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
-         $albumSongList.append($newRow);     }
+         $albumSongList.append($newRow);     
+     }
+
  };
 
  var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
