@@ -16,13 +16,11 @@
  };
 
  $(window).load(function() {
-    // #1
-    var collectionContainer = document.getElementsByClassName('album-covers')[0];
-    // #2
-    collectionContainer.innerHTML = '';
+   var $collectionContainer = $('.album-covers');
+  $collectionContainer.empty();
 
-    // #3
     for (var i = 0; i < 12; i++) {
-        collectionContainer.innerHTML += collectionItemTemplate;
+         var $newThumbnail = buildCollectionItemTemplate();
+        $collectionContainer.append($newThumbnail);
     }
 });
