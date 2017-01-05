@@ -108,13 +108,15 @@ var createSongRow = function(songNumber, songName, songLength) {
                 songItem.html(pauseButtonTemplate);
                 $playPause.html(playerBarPauseButton);
                 currentSoundFile.play();
-                updateSeekPercentage($volumeSeekBar, currentVolume);
+                updateSeekPercentage($volumeSeekBar, currentVolume/100);
+                updateSeekBarWhileSongPlays();
                 return;
             }
         }
-        updateSeekPercentage($volumeSeekBar, currentVolume);
+        updateSeekPercentage($volumeSeekBar, currentVolume/100);
         setSong(songNum);
         currentSoundFile.play();
+        updateSeekBarWhileSongPlays();
     };
     
     
@@ -167,6 +169,9 @@ var updateSeekBarWhileSongPlays = function() {
  
              updateSeekPercentage($seekBar, seekBarFillRatio);
          });
+     } else {
+         var $seekBar = $('.seek-control .seek-bar');
+         updateSeekPercentage($seekBar, 0.0);
      }
  };
 
@@ -187,9 +192,14 @@ var updateSeekBarWhileSongPlays = function() {
          // #5
          updateSeekPercentage($(this), seekBarFillRatio);
         if (isControl) {
-             seek(seekBarFillRatio);
+            var seconds = currentSongFromAlbum.duration;
+            seconds = seekBarFillRatio * seconds;
+            seek(seconds);
         } else {
-            setVolume(seekBarFillRatio);            
+            var volume = seekBarFillRatio * 100;
+            volume = Math.max(0, volume);
+            volume = Math.min(100, volume);
+            setVolume(volume);            
         }
      });
      $seekBars.find('.thumb').mousedown(function(event) {
@@ -206,9 +216,14 @@ var updateSeekBarWhileSongPlays = function() {
              var seekBarFillRatio = offsetX / barWidth; 
              updateSeekPercentage($seekBar, seekBarFillRatio);
              if (isControl) {
-                 seek(seekBarFillRatio);
+                var seconds = currentSongFromAlbum.duration;
+                seconds = seekBarFillRatio * seconds;
+                seek(seconds);
             } else {
-                setVolume(seekBarFillRatio);            
+                var volume = seekBarFillRatio * 100;
+                volume = Math.max(0, volume);
+                volume = Math.min(100, volume);
+                setVolume(volume);    
             }
          });
  
@@ -218,6 +233,8 @@ var updateSeekBarWhileSongPlays = function() {
              $(document).unbind('mouseup.thumb');
          });
      });
+     
+     updateSeekBarWhileSongPlays();
  };
 
  var trackIndex = function(album, song) {
@@ -242,6 +259,7 @@ var nextSong = function() {
     }
     setSong(index+1);
     currentSoundFile.play();
+    updateSeekBarWhileSongPlays();
 };
 
 var previousSong = function() {
@@ -263,6 +281,7 @@ var previousSong = function() {
     }
     setSong(index+1);
     currentSoundFile.play();
+    updateSeekBarWhileSongPlays();
 };
 
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
