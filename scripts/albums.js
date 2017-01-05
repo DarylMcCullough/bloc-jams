@@ -118,25 +118,14 @@ var createSongRow = function(songNumber, songName, songLength) {
  };
 
 var nextSong = function() {
-    if (currentAlbum == null) {
-        return; // nothing to do in this case
-    }
-    var numSongs = currentAlbum.songs.length;
-    if (numSongs <= 1) {
-        return; // nothing to do
-    }
-    var index = 0;    
-    if (currentSongFromAlbum != null) {
-        index = trackIndex(currentAlbum, currentSongFromAlbum);
-        index++;
-        if (index >= numSongs) {
-            index = 0;
-        }
-    }
-    setSong(index+1);
+    incrementSong(1);
 };
 
 var previousSong = function() {
+    incrementSong(-1);
+};
+
+var incrementSong = function(increment) {
     if (currentAlbum == null) {
         return; // nothing to do in this case
     }
@@ -147,14 +136,16 @@ var previousSong = function() {
     var index = 0;    
     if (currentSongFromAlbum != null) {
         index = trackIndex(currentAlbum, currentSongFromAlbum);
-        if (index == 0) {
-            index = numSongs - 1;
-        } else {
-            index--;
-        }
     }
-    setSong(index+1);
-};
+    index = index + increment;
+    if (index < 0) {
+        index += numSongs;
+    }
+    if (index >= numSongs) {
+        index -= numSongs;
+    }
+    setSong(index+1);    
+}
 
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
