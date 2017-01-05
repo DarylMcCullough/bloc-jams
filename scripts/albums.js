@@ -1,5 +1,3 @@
-console.log("HERE I AM");
-
 var updatePlayerBarSong = function() {
     var currentArtist = currentAlbum.artist;
     var currentSongTitle = currentSongFromAlbum.title;
@@ -125,7 +123,7 @@ var previousSong = function() {
     if (currentAlbum == null) {
         return; // nothing to do in this case
     }
-    var numSongs = curentAlbum.songs.length;
+    var numSongs = currentAlbum.songs.length;
     if (numSongs <= 1) {
         return; // nothing to do
     }
@@ -162,9 +160,7 @@ var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
 
 $(document).ready(function() {
-    console.log("inside document ready");
     setCurrentAlbum(albumPicasso);
-    console.log("set album");
     $previousButton.click(previousSong);
     $nextButton.click(nextSong);
 });
